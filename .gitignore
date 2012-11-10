@@ -1,2 +1,5 @@
 temp
+test
 #dist
+.DS_*
+.sass-cache/
