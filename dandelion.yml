@@ -1,0 +1,12 @@
+# Required
+scheme: sftp
+host: getagora.co
+username: administrator
+password: 126york!!
+
+# Optional
+path: /c/intetpub/wwwroot
+exclude:
+    - .gitignore
+    - dandelion.yml
+revision_file: .revision
