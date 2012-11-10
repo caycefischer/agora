@@ -5,10 +5,14 @@ username: administrator
 password: 126york!!
 
 # Optional
-path: /C/inetpub/wwwroot
+path: C/inetpub/wwwroot
 exclude:
     - .gitignore
+    - temp/
+    - test/
+    - app/
+    - app/404.htm
+    - .git/
     - dandelion.yml
     - .sass-cache/
-    - .sass-cache
-#revision_file: .revision
+revision_file: .revision
