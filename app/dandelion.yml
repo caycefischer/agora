@@ -8,7 +8,11 @@ password: 126york!!
 path: /C/inetpub/wwwroot
 exclude:
     - .gitignore
+    - _old/
+    - temp/
+    - test/
+    - app/
+    - .git/
     - dandelion.yml
     - .sass-cache/
-    - .sass-cache
-#revision_file: .revision
+revision_file: .revision
