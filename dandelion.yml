@@ -11,8 +11,6 @@ exclude:
     - temp/
     - test/
     - app/
-    - app/404.htm
-    - .git/
     - dandelion.yml
     - .sass-cache/
 revision_file: .revision
