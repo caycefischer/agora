@@ -5,7 +5,7 @@ username: administrator
 password: 126york!!
 
 # Optional
-path: /c/intetpub/wwwroot
+path: /C/intetpub/wwwroot
 exclude:
     - .gitignore
     - dandelion.yml

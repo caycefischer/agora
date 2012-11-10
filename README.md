@@ -1,4 +1,6 @@
-agora
+[Agora](http://getagora.co)
 =====
 
-A visual collaboration tool.
+Visual collaboration, **f**or **c**reatives **b**y **c**reatives.
+
+#FCBC
