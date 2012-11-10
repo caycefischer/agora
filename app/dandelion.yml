@@ -14,4 +14,3 @@ exclude:
     - .git/
     - dandelion.yml
     - .sass-cache/
-revision_file: .revision
