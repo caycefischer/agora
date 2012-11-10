@@ -8,7 +8,6 @@ password: 126york!!
 path: /C/inetpub/wwwroot
 exclude:
     - .gitignore
-    - _old/
     - temp/
     - test/
     - app/
