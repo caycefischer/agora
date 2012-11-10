@@ -1,11 +1,2 @@
-# shitty mac files
-##################
-.DS_Store
-
-# preprocessor stuff
-#####################
-.sass-cache/
-
-# old agora crap
-################
-_old/
+temp
+dist
