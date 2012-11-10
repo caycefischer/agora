@@ -122,8 +122,8 @@ module.exports = function( grunt ) {
     // renames JS/CSS to prepend a hash of their contents for easier
     // versioning
     rev: {
-      js: 'scripts/**/*.js',
-      css: 'styles/**/*.css',
+      js: 'scripts/**/scripts.js',
+      css: 'styles/**/style.css',
       img: 'images/**'
     },
 
