@@ -5,7 +5,7 @@ username: administrator
 password: 126york!!
 
 # Optional
-path: C/inetpub/wwwroot
+path: /C/inetpub/wwwroot
 exclude:
     - .gitignore
     - temp/
