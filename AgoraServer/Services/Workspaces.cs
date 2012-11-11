@@ -18,10 +18,12 @@ namespace Agora.Services
         //============================================================
         EWorkspace IWorkspaces.Load()
         {
-            using(AgoraDataContext DB = new AgoraDataContext())
+            using(AgoraDataConte//gElements.Add(new EWorkspaceElement() { Data = "SERVER1" });
+            //gElements.Add(new EWorkspaceElement() { Data = "SERVER2" });
+            //gElements.Add(new EWorkspaceElement() { Data = "SERVER3" });
+ new AgoraDataContext())
             {
-                SWorkspace dbWorkspace = DB.Workspaces.First();
-                
+                SWorkspace dbWorkspace = DB.Workspaces.Single(o=>o.WorkspaceID==workspace.Workspac   
                 EWorkspace oWorkspace = new EWorkspace()
                 {   
                     WorkspaceID = dbWorkspace.WorkspaceID,
@@ -50,6 +52,25 @@ namespace Agora.Services
 
                 DB.SaveChanges();
              }
+        }
+    }
+}
+
+        static List<EWorkspaceElement> gElements = new List<EWorkspaceElement>();=======================================
+        //
+        //
+        //============================================================
+        void IWorkspaces.Save(EWorkspace workspEWorkspaceElement[] IWorkspaces.GetElements(int workspaceID)
+        {
+            return gElements.ToArray();==================================================
+        //
+        //
+        //============================================================
+        void IWorkspaces.Save(EWorkspace workspace)
+        {
+  AddElement(EWorkspaceElement workspaceElement)
+        {
+            gElements.Add(workspaceElement);
         }
     }
 }

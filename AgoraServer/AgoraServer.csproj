@@ -61,6 +61,7 @@
     <Compile Include="Data\SUser.cs" />
     <Compile Include="Entities\EWorkspace.cs" />
     <Compile Include="Entities\EUser.cs" />
+    <CompElement <Compile Include="Entities\EUser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Workspaces.cs" />
@@ -76,6 +77,8 @@
   <ItemGroup>
     <Content Include="Tests\test1.js" />
     <Content Include="Tests\test1.htm" />
+  </ItemGroup>
+  <Import Pb.htm" /1.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,3 +21,12 @@ namespace Agora.Contracts
         void Save(EWorkspace user);
     }
 }
+rationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json)]
+        EWorkspace Load();
+
+      Element[] GetElements(int workspaceIDrationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json)]
+        void Save(EWorkspace userAddElement(EWorkspaceElement workspaceElement);
+    }
+}
