@@ -17,8 +17,7 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
     $scope.workspaceID   = 0;
     $scope.name          = "";
     $scope.description   = "";
-    $scope.elements      = [ { workspaceElementID:0, workspaceElementUID:0, data:"x"} ];
-    $scope.text          = "";
+    $scope.elements      = [ { wor $scope.text          = "";
     $scope.collaborators = [ 'Jim', 'Frank', 'Bob' ];
     
     $scope.load = function () {
@@ -60,38 +59,86 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
 
     // PRIVATE
 
-    $scope.createStage = function () {
-    
-        $scope.stage = new Kinetic.Stage( { container:'js-workspace', width:500, height:200 });
-
-	    $scope.layer = new Kinetic.Layer();
-
-        $scope.stage.add($scope.layer);
-
-	    var ui = new Object();
-	    ui.type = "rect";
-	
-        	    var rect = new Kinetic.Rect({
-        		    x: 150,
-        		    y: 100,
-        		    width: 200,
-        		    height: 78,
-        		    fill: 'green',
-        		    stroke: 'black',
-        		    strokeWidth: 4
-        	    });
-
-	            $scope.layer.add(rect);
-                $scope.layer.drawScene();
-
-        //$scope.text = rect.toJSON();
-        //JSON.stringify(someObject)
+    $scope.createStage = function ($scope.updateElement = function (shape) {
+        
+        var data = new Object();
+        data.workspaceElementID  = 0;
+        data.workspaceElementUID = shape.parentController.element.workspaceElementUID;
+        data.data                = shape.toJSON();
+        
+        $http.post('/server/workspaces/UpdateElement', data).success(function () {
+        }).error(function(s) { alert(s); });
     }
 
-    // CONSTRUCTOR
+    // PRIVATE
 
-    $scope.load();
-    $scope.getElements();
+    $scope.createStage = function () {
+    
+        $scope.stage       = new Kinetic.Stage( { container:'js-workspace', width:$("#js-workspace").width(), height:$("#js-workspace").height() });
+        $scope.layer       = new Kinetic.Layer();
+        $scope.designLayer = new Kinetic.Layer();
+        $scope.background  = new Kinetic.Rect({ x:0, y:0, width:2000, height:2000, fill:'#eee' });
+
+        $scope.layer.add($scope.background);
+        $scope.stage.add($scope.layer);
+        $scope.stage.add($scope.designLayer);
+
+        $scope.$watch('elements.length', $scope.buildStage);
+        $scope.$watch('elements[elements.length-1].workspaceElementID', $scope.buildStage);
+
+        $("#js-workspace").watch('width,height', function() {
+            $scope.stage.setWidth(this.width());
+            $scope.stage.setHeight(this.height());
+        });
+
+        
+        //$scope.text = rect.toJSON();
+        //JSON.stringify(someObject)
+
+        $scope.ready = true;
+    }
+
+    // BUILD
+    $scope.buildStage = function () {
+    
+        if($scope.ready!=true) return;
+
+        $scope.layer.removeChildren();
+        $scope.layer.add($scope.background);
+
+        $scope.background.on('mousedown', function(evt) { alert(0);
+            //if($scope.focus==undefined) return;
+            //$scope.focus.leaveDesignMode();
+        });
+
+        $.each($scope.elements, function(i, element) {
+
+            var shape           = Kinetic.Node.create(element.data);
+            var shapeController = new Kinetic.Group({ draggable:true });
+            
+            shape.parentController  = shapeController;
+            shapeController.add(shape);
+            shapeController.$scope  = $scope;
+            shapeController.shape   = shape;
+            shapeController.element = element;
+
+            ExtendControllerAsRectangleController(shapeController); // UGLY HACK
+            
+            //shape.on('mouseover', function() { document.body.style.cursor = 'pointer'; shape.controller.enterDesign(); });
+            //shape.on('mouseout', function() { document.body.style.cursor = 'default'; });
+
+            //shape.on('dragmove', function(evt) { $scope.updateElement(shape); });
+
+            $scope.layer.add(shapeController);
+        });
+        
+        $scope.layer.drawBuffer();
+        $scope.layer.drawScene();
+    }
+    
+    //$scope.$on('$locationChangeStart', function(event, newUrl) {
+    //alert('new location');
+.getElements();
     
     // AUTO-REFRESH POOLING 
     window.setInterval(function() {
@@ -99,7 +146,97 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
     }, 500);
 
 	// INITIALIZE KINETICJS CANVAS
-	$('document').ready(function() { setTimeout($scope.createStage, 10); });
+	$('document').ready(100);
+
+	// INITIALIZE KINETICJS CANVAS
+	$scope.$on('$viewContentLoaded', function()
+    {
+        $scope.createStage();
+    });
 });
 
+function ExtendControllerAsRectangleController(self) {
+//    this.shape   = shape;
+//    this.element = undefined;
+//    this.group   = undefined;
+//    this.shadow  = undefined;
+//    this.handle1 = undefined;
+//    this.handle2 = undefined;
+//    this.handle3 = undefined;
+//    this.handle4 = undefined;
 
+    //========================================
+    self.enterDesign = function() {
+        if(self.$scope.focus!=undefined)
+            self.$scope.focus.leaveDesign();
+
+        var x1 = self.shape.attrs.x;
+        var x2 = self.shape.attrs.x+self.shape.attrs.width;
+        var y1 = self.shape.attrs.y;
+        var y2 = self.shape.attrs.y+self.shape.attrs.height;
+
+//        this.group  = new Kinetic.Group({ draggable:true });
+//        this.shadow = Kinetic.Node.create(this.shape.toJSON());
+
+        self.handle1 = new Kinetic.Circle({x:x1,y:y1,radius:10,fill:'red',stroke:'black',strokeWidth:2});
+        self.handle2 = new Kinetic.Circle({x:x2,y:y1,radius:10,fill:'red',stroke:'black',strokeWidth:2});
+        self.handle3 = new Kinetic.Circle({x:x2,y:y2,radius:10,fill:'red',stroke:'black',strokeWidth:2});
+        self.handle4 = new Kinetic.Circle({x:x1,y:y2,radius:10,fill:'red',stroke:'black',strokeWidth:2});
+
+//        this.group.add(this.shadow);
+        self.add(self.handle1);
+        self.add(self.handle2);
+        self.add(self.handle3);
+        self.add(self.handle4);
+
+//        $scope.designLayer.add(this.group);
+//        $scope.designLayer.drawBuffer();
+//        $scope.designLayer.drawScene();
+
+        self.$scope.focus = self;
+        self.$scope.layer.drawBuffer();
+        self.$scope.layer.drawScene();
+    }
+
+    self.on('mouseover', function() { document.body.style.cursor = 'pointer'; });  // 
+    self.on('mouseout', function() { document.body.style.cursor = 'default'; });
+
+    self.on('mousedown', function() { self.enterDesign(); });
+
+    self.on('dragstart', function(evt) 
+    {
+        self.startX = self.attrs.x;
+        self.startY = self.attrs.y;
+    });
+
+    self.on('dragend', function(evt) 
+    { 
+        var deltaX = self.attrs.x-self.startX;
+        var deltaY = self.attrs.y-self.startY;
+    
+        self.shape.setX(self.shape.attrs.x+deltaX);
+        self.shape.setY(self.shape.attrs.y+deltaY);
+        
+        self.$scope.updateElement(self.shape); 
+
+        //self.leaveDesign(); 
+    });
+//        this.group.on('mouseout', function() { self.leaveDesign(); });
+//    };
+
+    self.leaveDesign = function() {
+        //self.remove(self.handle1);
+        //self.remove(self.handle2);
+        //self.remove(self.handle3);
+        //self.remove(self.handle4);
+
+        //self.$scope.focus = undefined;
+        //self.$scope.layer.drawBuffer();
+       // self.$scope.layer.drawScene();
+
+//        $scope.designLayer.drawBuffer();
+//        $scope.designLayer.drawScene();
+
+//        document.body.style.cursor = 'default';
+    };
+}
