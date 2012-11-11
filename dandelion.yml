@@ -11,6 +11,7 @@ exclude:
     - temp/
     - test/
     - components/
+    - AgoraServer
     - dandelion.yml
     - .sass-cache/
 revision_file: .revision
