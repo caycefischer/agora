@@ -123,7 +123,7 @@ module.exports = function( grunt ) {
     // versioning
     rev: {
       js: 'scripts/**/scripts.js',
-      css: 'styles/**/style.css',
+      css: 'styles/**/styles.css',
       img: 'images/**'
     },
 
