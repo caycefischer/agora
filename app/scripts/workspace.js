@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // workspace constructor function
 function initializeWorkspaceJS($scope) {
 	// get the window dimensions
@@ -66,3 +67,5 @@ function makeState() {
         });
 
 };
+=======
+>>>>>>> 0f8efa9c05bc798ebd6cd43b8499dbbe3892dbc0
