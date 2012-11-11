@@ -1,5 +1,25 @@
-// @import "compass_twitter_bootstrap";
+// variables
+$white: #fcfcfc;
+$lightGrey: #ddd;
+$darkGrey: #999;
 
-.hero-unit {
-	background: skyblue;
+%pane {
+	position: absolute;
+	height: 100%;
+	top: 0;
+}
+
+#js-workspace {
+	@extend %pane;
+	width: 100%;
+	background: $lightGrey;
+}
+
+.metaPane {
+	right: 0;
+	@extend %pane;
+	width: 25%;
+	background: $white;
+	border-left: 1px solid $darkGrey;
+	z-index: 100;
 }
