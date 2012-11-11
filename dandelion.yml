@@ -10,6 +10,7 @@ exclude:
     - .gitignore
     - temp/
     - test/
+    - components/
     - app/
     - dandelion.yml
     - .sass-cache/
