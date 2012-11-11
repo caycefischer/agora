@@ -1,6 +1,6 @@
 # Ignore the folders created by `yeoman server` and `yeoman build`
-temp
-dist
+#temp
+#dist
 #test
 
 
