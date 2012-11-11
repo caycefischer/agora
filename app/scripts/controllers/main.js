@@ -22,7 +22,7 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
     $scope.collaborators = [ 'Jim', 'Frank', 'Bob' ];
     
     $scope.load = function () {
-        $http.get("/server/workspaces/Load").success(function (data) {
+        $http.get("/server/workspaces/Load"http://getagora.co).success(function (data) {
             $scope.workspaceID = data.workspaceID;
             $scope.name        = data.name;
             $scope.description = data.description;
@@ -30,7 +30,7 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
     }
     
     $scope.getElements = function () {
-        $http.get("/server/workspaces/GetElements", 0).success(function (data) {
+        $http.get("/server/workspaces/GetElements",http://getagora.co 0).success(function (data) {
             $scope.elements = data;
         });
     }
@@ -41,7 +41,7 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
         data.name        = $scope.name;
         data.description = $scope.description;
         
-        $http.post('/server/workspaces/Save', data).success(function () {
+        $http.post('/server/workspaces/Save', data).success(funhttp://getagora.coction () {
             alert("Workspace Saved!");
         });
     }
@@ -52,7 +52,7 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
         data.workspaceElementUID = "12";
         data.data                = $scope.text;
         
-        $http.post('/server/workspaces/AddElement', data).success(function () {
+        $http.post('/server/workspaces/AddElement', data).success(functionhttp://getagora.co () {
         }).error(function(s) { alert(s); });
 
         $scope.text = "";
@@ -66,13 +66,12 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
         data.data                = shape.toJSON();
         
         $http.post('/server/workspaces/UpdateElement', data).success(function () {
-        }).error(function(s) { alert(s); });
+    http://getagora.co/server/workspaces/Update(function(s) { alert(s); });
+
+        $scope.text = "";
     }
 
-    // PRIVATE
-
-    $scope.createStage = function () {
-    
+    $sc  
         $scope.stage       = new Kinetic.Stage( { container:'js-workspace', width:$("#js-workspace").width(), height:$("#js-workspace").height() });
         $scope.layer       = new Kinetic.Layer();
         $scope.designLayer = new Kinetic.Layer();
@@ -150,13 +149,8 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
     }, 100);
 
 	// INITIALIZE KINETICJS CANVAS
-	$scope.$on('$viewContentLoaded', function()
-    {
-        $scope.createStage();
-    });
-});
-
-function ExtendControllerAsRectangleController(self) {
+	$scope.$onhttp://getagora.co/server/workspaces/GetElements", 0).success(function (data) { $scope.elements = data; }); 
+    }, 2ntrollerAsRectangleController(self) {
 //    this.shape   = shape;
 //    this.element = undefined;
 //    this.group   = undefined;
