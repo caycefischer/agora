@@ -30,9 +30,11 @@
 
         <!-- build:js scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="components/jquery/jquery.js"></script>
         <script src="components/modernizr/modernizr.js"></script>
+        <script src="components/jquery/jquery.js"></script>
+        <script src="components/kineticJS/kinetic.js"></script>
+        <script src="scripts/workspace.js"></script>
+        <script src="scripts/controllers/main.js"></script>
         <!-- endbuild -->
 
         <!-- Google Analytics -->
@@ -41,12 +43,6 @@
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
-
-        <script>
-            $(document).ready(function() {
-                alert("DERP");
-            });
         </script>
     </body>
 </html>

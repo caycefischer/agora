@@ -13,4 +13,15 @@ var agoraApp = angular.module('agoraApp', [])
       .otherwise({
         redirectTo: '/'
       });
+
+    $routeProvider
+      .when('/workspace', {
+        templateUrl: 'views/_workspace.html',
+        controller: 'WorkspaceController'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
+
+
   }]);

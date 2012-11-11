@@ -1,0 +1,6 @@
+{
+  "name": "kineticJS",
+  "version": "4.0.5",
+  "main": "./kinetic.js",
+  "dependencies": {}
+}
