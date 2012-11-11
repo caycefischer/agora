@@ -1,9 +1,9 @@
-function makeState() {
+function makeState($scope) {
 	
 	var stage = new Kinetic.Stage({
 		container: 'js-workspace',
 		width: 500,
-		height: 300
+		height: 200
 	});
 
 	var layer = new Kinetic.Layer();
@@ -25,5 +25,6 @@ function makeState() {
 
 	stage.add(layer);
 
-
+    $scope.text = rect.toJSON();
+    //JSON.stringify(someObject)
 };
