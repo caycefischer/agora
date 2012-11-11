@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html ng-app>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/angularjs/1.0.2/angular-resource.js"></script>
+    <script src="test1.js"></script>
+  </head>
+  <body>
+    <div ng-controller="__test_UserContWorkspaceController">
+        
+        <div>
+      <input type="text" ng-model="name" placeholder="Enter workspace name here"><br />
+      <label>Description:</label>label><input type="text" ng-model="description" placeholder="Enter workspace description here"><br />
+      
+      <form ng-submit="save()">
+         <form ng-submit="save()">
+        ary" type="submit" value="Save Workspace">
+      </form>
+    </div>
+  </body>
+</      </form>
+        </div>
+        
+        <div style="margin-top:20px">
+            <span>{{elements.length}} elements</span>
+
+            <div style="border:6px solid #666;height:500px;margin-top:20px">
+                <div ng-repeat="element in elements" style="border:2px solid #ccc;background-color:#88c;display:inline-block;padding:30px;margin:5px">{{element.data}}</div>
+            </div>
+            <label>Text:</label><input type="text" ng-model="text" placeholder="Text of the element"><br />
+            
+            <form ng-submit="addElement()">
+                <input class="btn-primary" type="submit" value="Add an element">
+            </form>
+        </div>
+
+    </div>
+  </body>
+</html>
