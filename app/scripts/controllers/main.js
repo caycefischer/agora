@@ -17,7 +17,8 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
     $scope.workspaceID   = 0;
     $scope.name          = "";
     $scope.description   = "";
-    $scope.elements      = [ { wor $scope.text          = "";
+    $scope.elements      = [];
+    $scope.text          = "";
     $scope.collaborators = [ 'Jim', 'Frank', 'Bob' ];
     
     $scope.load = function () {
@@ -57,13 +58,7 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
         $scope.text = "";
     }
 
-    // PRIVATE
-
-<<<<<<< HEAD
-    initializeWorkspaceJS($scope);
-    // CONSTRUCTOR
-=======
-    $scope.createStage = function ($scope.updateElement = function (shape) {
+    $scope.updateElement = function (shape) {
         
         var data = new Object();
         data.workspaceElementID  = 0;
@@ -109,7 +104,7 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
 
         $scope.layer.removeChildren();
         $scope.layer.add($scope.background);
-
+          
         $scope.background.on('mousedown', function(evt) { alert(0);
             //if($scope.focus==undefined) return;
             //$scope.focus.leaveDesignMode();
@@ -125,7 +120,6 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
             shapeController.$scope  = $scope;
             shapeController.shape   = shape;
             shapeController.element = element;
->>>>>>> 0f8efa9c05bc798ebd6cd43b8499dbbe3892dbc0
 
             ExtendControllerAsRectangleController(shapeController); // UGLY HACK
             
@@ -143,33 +137,23 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
     
     //$scope.$on('$locationChangeStart', function(event, newUrl) {
     //alert('new location');
-.getElements();
+
+
+    // CONSTRUCTOR
+
+    $scope.load();
+    $scope.getElements();
     
     // AUTO-REFRESH POOLING 
     window.setInterval(function() {
         $http.get("/server/workspaces/GetElements", 0).success(function (data) { $scope.elements = data; }); 
-    }, 500);
-
-<<<<<<< HEAD
-    $('document').ready(function(){ 
-    	// INITIALIZE KINETICJS CANVAS
-        setTimeout($scope.createStage, 10); 
-        
-        // START UP EVENT LISTENERS
-        $scope.initListeners();
-    });
-
-
-=======
-	// INITIALIZE KINETICJS CANVAS
-	$('document').ready(100);
+    }, 100);
 
 	// INITIALIZE KINETICJS CANVAS
 	$scope.$on('$viewContentLoaded', function()
     {
         $scope.createStage();
     });
->>>>>>> 0f8efa9c05bc798ebd6cd43b8499dbbe3892dbc0
 });
 
 function ExtendControllerAsRectangleController(self) {
