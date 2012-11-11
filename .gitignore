@@ -1,5 +1,15 @@
+# Ignore the folders created by `yeoman server` and `yeoman build`
 temp
-test
-#dist
+dist
+#test
+
+
+# OSX
 .DS_*
-.sass-cache/
+
+# Ignore hidden folders
+.*/
+
+*.min.css
+#*.min.js
+.sass-cache/*

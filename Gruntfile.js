@@ -12,14 +12,16 @@ module.exports = function( grunt ) {
 
     // specify an alternate install location for Bower
     bower: {
-      dir: 'app/scripts/vendor'
+      dir: 'app/components'
     },
 
     // Coffee to JS compilation
     coffee: {
-      dist: {
-        src: 'app/scripts/**/*.coffee',
-        dest: 'app/scripts'
+      compile: {
+        files: {
+          'app/scripts/*.js': 'app/scripts/**/*.coffee',
+          'test/spec/*.js': 'test/spec/**/*.coffee'
+        }
       }
     },
 
@@ -45,7 +47,7 @@ module.exports = function( grunt ) {
     // default watch configuration
     watch: {
       coffee: {
-        files: '<config:coffee.dist.src>',
+        files: 'app/scripts/**/*.coffee',
         tasks: 'coffee reload'
       },
       compass: {
@@ -122,8 +124,8 @@ module.exports = function( grunt ) {
     // renames JS/CSS to prepend a hash of their contents for easier
     // versioning
     rev: {
-      js: 'scripts/**/scripts.js',
-      css: 'styles/**/styles.css',
+      js: 'scripts/**/*.js',
+      css: 'styles/**/*.css',
       img: 'images/**'
     },
 
@@ -161,7 +163,7 @@ module.exports = function( grunt ) {
       optimize: 'none',
       baseUrl: './scripts',
       wrap: true
-    },
+    }
   });
 
   // Alias the `test` task to run `testacular` instead
@@ -172,5 +174,4 @@ module.exports = function( grunt ) {
       done(err);
     });
   });
-
 };
