@@ -60,34 +60,7 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
 
     // PRIVATE
 
-    $scope.createStage = function () {
-    
-        $scope.stage = new Kinetic.Stage( { container:'js-workspace', width:500, height:200 });
-
-	    $scope.layer = new Kinetic.Layer();
-
-        $scope.stage.add($scope.layer);
-
-	    var ui = new Object();
-	    ui.type = "rect";
-	
-        	    var rect = new Kinetic.Rect({
-        		    x: 150,
-        		    y: 100,
-        		    width: 200,
-        		    height: 78,
-        		    fill: 'green',
-        		    stroke: 'black',
-        		    strokeWidth: 4
-        	    });
-
-	            $scope.layer.add(rect);
-                $scope.layer.drawScene();
-
-        //$scope.text = rect.toJSON();
-        //JSON.stringify(someObject)
-    }
-
+    initializeWorkspaceJS($scope);
     // CONSTRUCTOR
 
     $scope.load();
@@ -98,8 +71,15 @@ agoraApp.controller('WorkspaceController', function($scope, $http) {
         $http.get("/server/workspaces/GetElements", 0).success(function (data) { $scope.elements = data; }); 
     }, 500);
 
-	// INITIALIZE KINETICJS CANVAS
-	$('document').ready(function() { setTimeout($scope.createStage, 10); });
+    $('document').ready(function(){ 
+    	// INITIALIZE KINETICJS CANVAS
+        setTimeout($scope.createStage, 10); 
+        
+        // START UP EVENT LISTENERS
+        $scope.initListeners();
+    });
+
+
 });
 
 
